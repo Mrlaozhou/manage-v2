@@ -14,15 +14,11 @@ class IndexController extends Controller
     public function index (Request $request)
     {
         // -- mode 测试
+        $roles       =   Role::with('privileges')->get();
 
-//        $test           =   Mode::first();
-//
-//        $test           =   Privilege::find('9A8428EF50AE935DC09B1791389D8AE9')->roles()->get();
+        foreach ($roles as $role){
+            dump($role->privileges);
+        }
 
-//        $test           =   Role::first()->privileges()->get()->groupBy('type');
-
-        $test           =   Admin::find('3F6F6A50BD91AC4572E24BAA879CB805')->roles()->get();
-
-        dump($test);
     }
 }

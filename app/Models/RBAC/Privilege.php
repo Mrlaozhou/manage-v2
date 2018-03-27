@@ -15,10 +15,13 @@ class Privilege extends BaseModel
     /**@ 权限所对模式
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function mode ()
+    public function modes ()
     {
-        return $this->hasOne( Mode::class,'uuid','mode' )
-            ->select(...['name','sign']);
+        return $this->belongsTo(
+            Mode::class,
+            'mode',
+            'uuid'
+        );
     }
 
     /**
@@ -27,13 +30,11 @@ class Privilege extends BaseModel
      */
     public function roles ()
     {
-        return $this->hasManyThrough(
+        return $this->belongsToMany(
             Role::class,
-            Relation2::class,
+            'relation2',
             'puuid',
-            'uuid',
-            'uuid',
             'ruuid'
-        )->select(...['name']);
+        )->select(...['name','sign']);
     }
 }

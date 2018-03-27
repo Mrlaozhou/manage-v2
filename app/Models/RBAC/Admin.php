@@ -17,12 +17,12 @@ class Admin extends BaseModel
             'auuid',
             'uuid',
             'uuid',
-            'auuid'
+            'ruuid'
         )->select(...['name']);
     }
 
     public function scopeRoot ($query)
     {
-        return $query->where( 'uuid', env('ROOT') );
+        return $query->where( 'uuid', config('auth.root') );
     }
 }

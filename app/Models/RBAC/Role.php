@@ -2,9 +2,9 @@
 
 namespace App\Models\RBAC;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\RBAC\Base as BaseModel;
 
-class Role extends Model
+class Role extends BaseModel
 {
     //
     protected $table            =   'role';
@@ -21,4 +21,13 @@ class Role extends Model
         )->select(...['name','type']);
     }
 
+    public function admins ()
+    {
+        return $this->belongsToMany(
+            Admin::class,
+            'relation1',
+            'ruuid',
+            'auuid'
+        )->select(...['username']);
+    }
 }

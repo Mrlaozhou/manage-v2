@@ -99,4 +99,5 @@ return [
         ],
     ],
 
+    'root'  =>  env('ROOT'),
 ];
